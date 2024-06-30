@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fincust-Login</title>
+    <link rel="stylesheet" href="CSS/lstyle.css">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!--PARTE DA LOGO DO PROJETO-->
+    <div id="logo">
+        <img src="" width="300px"> <!-- Aumentamos o tamanho do logo -->
+        <p id="subTitulo">Controle Financeiro de Clientes</p>
+    </div>
+
+    <!--PARTE DO LOGIN DO PROJETO-->
+    <div id="container">
+        <div id="login">
+            <p id="titulo">LOGIN</p><br><br>
+            <form id="loginForm">
+                <p>E-mail <br><input type="email" id="email" name="email" placeholder="@email.com" required></p>
+                <p>Senha <br><input type="password" name="password" placeholder="senha" required></p><br><br>
+                <button type="button" onclick="login()">ENTRAR</button>
+                <p id="errorMessage" class="error-message"></p> <!-- Mensagem de erro -->
+            </form>
+        </div>
+    </div>
+    <script src="JS/lscript.js"></script> <!-- Incluímos o arquivo JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="../firebaseInit.js"></script>
+</body>
+</html>

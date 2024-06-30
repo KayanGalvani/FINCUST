@@ -1,0 +1,235 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0;
+  }
+  
+  /* Estilos da barra lateral */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #333; /* Cor de fundo desejada para a barra lateral */
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .sidebar-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .profile-container {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-name {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .menu-item {
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+  
+  .main-content {
+    margin-left: 240px; /* Ajuste conforme necessário */
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-heading {
+    padding-top: 40px;
+    padding-left: 10px;
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-left: 100px;
+  }
+  
+  .header-right {
+    flex-shrink: 0; /* Para evitar que o lado direito fique muito largo */
+  }
+  
+  .user-photo {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    height: 200px; /* Ajuste o tamanho conforme necessário */
+    border-radius: 50%; /* Garante que a imagem seja circular se for o caso */
+  }
+  
+  /* Estilos para os links na barra lateral */
+  .sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+  }
+  input{
+    background-color: #F3F3F3;
+    color: #333;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .sidebar a:hover {
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+  }
+  
+  .logo img {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Altura automática para manter proporções */
+    padding-right: 80px;
+  }
+  
+  .expenses-section {
+    padding: 20px;
+  }
+  
+  .expense-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .expense-actions form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .expense-actions label {
+    margin-right: 10px;
+  }
+  
+  .expense-actions input[type="text"], .expense-actions input[type="date"] {
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .expense-actions button[type="submit"], .expense-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .expense-actions button[type="submit"]:hover, .expense-actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  .expense-table {
+    margin-top: 20px;
+  }
+  
+  .expense-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .expense-table th, .expense-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .expense-table th {
+    background-color: #333;
+    color: #fff;
+    text-align: center; /* Centraliza o texto no cabeçalho da tabela */
+  }
+  
+  .expense-table td {
+    background-color: #fff;
+    text-align: center; /* Centraliza o texto nas células da tabela */
+  }
+  
+  .expense-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-left, .btn-right, .btn-action {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-left {
+    background-color: #F3F3F3;
+    color: #333;
+  }
+  
+  .btn-right {
+    background-color: #F3F3F3;
+    color: #333;
+  }
+  
+  .btn-action {
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .btn-action:hover {
+    background-color: #ddd;
+  }
+  .client-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .expense-value {
+    color: #dc3545; /* Cor vermelha para despesas */
+  }
+  .client-actions input[type="date"] {
+    padding: 10
+    px;
+    margin-left: 50px;
+    font-size: 10px;
+  }
+  

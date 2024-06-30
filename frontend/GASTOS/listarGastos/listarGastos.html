@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fincust-Gastos</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="LGstyle.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="dashboard-title"></div>
+  </div>
+  
+  <div class="profile-container">
+    <div class="profile-info">
+      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><BR>
+      <img src="IMG/avatar.jpeg" alt="Foto do Usuário" class="user-photo">
+    </div>
+  </div>
+  
+  <div class="menu-item">
+    <a href="../../DASHBOARD/dashboard.html">Dashboard</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="../../USUARIOS/listarUsuarios/listarUsuarios.html">Usuários</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="../../CLIENTES/listarClientes/listarClientes.html">Clientes</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="listarGastos.html">Gastos</a>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="header">
+    <div class="header-left">
+      <div class="dashboard-heading">Gastos</div>
+    </div>
+    <div class="header-right">
+      <div class="logo">
+        <img src="IMG/Logo.png" alt="Logo do Projeto" class="logo-img">
+      </div>
+    </div>
+  </div>
+
+  <div class="clients-section">
+    <div class="client-actions">
+      <button class="btn-left">Cadastrar Cliente</button>
+      <p class="btn-right">Pesquisar Cliente 
+        <input type="text" placeholder="Nome do Cliente"><br>
+        <input type="date" placeholder="Data Início">
+        <input type="date" placeholder="Data Final">
+      </p>
+    </div><br>
+    
+    <h2>Lista de Gastos</h2>
+    
+    <div class="expense-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th colspan="3">Ações</th> <!-- colspan="3" para unir as colunas das ações -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Aluguel</td>
+            <td class="expense-value">R$ -1500,00</td>
+            <td>2024-06-22</td>
+            <td>
+                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Editar</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
+              </td>
+          </tr>
+          
+          <!-- Adicionar mais gastos aqui -->
+          
+          <tr>
+            <td>2</td>
+            <td>Compra de Materiais</td>
+            <td class="expense-value">R$ -800,00</td>
+            <td>2024-06-23</td>
+            <td>
+                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Editar</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
+              </td>
+          </tr>
+          
+          <tr>
+            <td>3</td>
+            <td>Manutenção de ferramentas</td>
+            <td class="expense-value">R$ -300,00</td>
+            <td>2024-06-24</td>
+            <td>
+                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Editar</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
+              </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Mecanico Gol G5 branco</td>
+            <td class="expense-value">R$ -300,00</td>
+            <td>2024-06-24</td>
+            <td>
+                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Editar</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
+              </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Salario Kayan</td>
+            <td class="expense-value">R$ -2.200,00</td>
+            <td>2024-06-24</td>
+            <td>
+                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Editar</button>
+              </td>
+              <td>
+                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
+              </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Biblioteca Font Awesome para os ícones -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+    function confirmDelete() {
+      Swal.fire({
+        title: 'Tem certeza que deseja apagar?',
+        text: 'Esta ação não pode ser revertida!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, apagar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Apagado!',
+            'O item foi apagado com sucesso.',
+            'success'
+          );
+          // Aqui você pode colocar a lógica para excluir o item
+          // Por exemplo, pode redirecionar para uma página de confirmação de exclusão ou fazer uma requisição AJAX para excluir o item do servidor
+          console.log("Item apagado!");
+        } else {
+          Swal.fire(
+            'Cancelado',
+            'Ação cancelada pelo usuário.',
+            'info'
+          );
+        }
+      });
+    }
+</script>
+
+</body>
+</html>

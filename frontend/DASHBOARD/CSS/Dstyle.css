@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #333; /* Cor de fundo desejada para a barra lateral */
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .sidebar-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .profile-container {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-name {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .menu-item {
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+  
+  .main-content {
+    margin-left: 240px; /* Ajuste conforme necessário */
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-heading {
+    padding-top: 40px;
+    padding-left: 10px;
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-left: 100px;
+  }
+  
+  .header-right {
+    flex-shrink: 0; /* Para evitar que o lado direito fique muito largo */
+  }
+  
+  .logo img {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Altura automática para manter proporções */
+    padding-right: 80px;
+  }
+  
+  .statistics {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-right: 20px;
+    margin-left: 50px; /* Move o elemento para a direita */
+    width: 1530px;
+  }
+  
+  .report-generator {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-right: 20px;
+    margin-left: auto; /* Move o elemento para a direita */
+    width: 1530px;
+  }
+  
+  .user-photo {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    height: 200px; /* Ajuste o tamanho conforme necessário */
+    border-radius: 50%; /* Garante que a imagem seja circular se for o caso */
+  }
+  
+  /* Estilos para os links na barra lateral */
+  .sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+  }
+  
+  .sidebar a:hover {
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+  }
+  .report-generator {
+    font-size: 20px;
+  }
+  .statistics {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-right: 20px;
+    margin-left: 50px; /* Ajuste conforme necessário */
+    width: 1530px;
+    font-size: 20px;
+  
+  }
+  
+  .total-bruto {
+    color: #28a745; /* Verde para Total Bruto */
+  }
+  
+  .total-despesas {
+    color: #dc3545; /* Vermelho para Total Despesas */
+  }
+  
+  .lucro-liquido {
+    color: #28a745; /* Verde para Lucro Líquido */
+    font-size: 30px;
+    border: 1px black;
+  }
