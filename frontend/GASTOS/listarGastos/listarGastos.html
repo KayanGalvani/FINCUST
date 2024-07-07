@@ -4,8 +4,98 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fincust-Gastos</title>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="LGstyle.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<style>
+/* Estilos para o modal */
+.modal {
+  display: none; /* Ocultar por padrão */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* Centralizar verticalmente */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos para o formulário dentro do modal */
+.modal-content form {
+  display: grid;
+  gap: 10px;
+}
+
+.modal-content form label {
+  font-weight: bold;
+}
+
+.modal-content form input,
+.modal-content form textarea {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modal-content form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.modal-content form button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para o botão verde */
+.btn-green {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-green:hover {
+  background-color: #218838;
+}
+</style>
 </head>
 <body>
 
@@ -16,7 +106,7 @@
   
   <div class="profile-container">
     <div class="profile-info">
-      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><BR>
+      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><br>
       <img src="IMG/avatar.jpeg" alt="Foto do Usuário" class="user-photo">
     </div>
   </div>
@@ -52,9 +142,8 @@
 
   <div class="clients-section">
     <div class="client-actions">
-      <button class="btn-left">Cadastrar Cliente</button>
-      <p class="btn-right">Pesquisar Cliente 
-        <input type="text" placeholder="Nome do Cliente"><br>
+      <button class="btn-green" onclick="window.location.href='/frontend/GASTOS/cadastrarGastos/cadastrarGastos.html'">Cadastrar Gasto</button>      <p class="btn-right">Pesquisar Gasto 
+        <input type="text" placeholder="Nome do Gasto"><br>
         <input type="date" placeholder="Data Início">
         <input type="date" placeholder="Data Final">
       </p>
@@ -70,129 +159,261 @@
             <th>Nome</th>
             <th>Valor</th>
             <th>Data</th>
+            <th>Responsável</th>
             <th colspan="3">Ações</th> <!-- colspan="3" para unir as colunas das ações -->
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Aluguel</td>
-            <td class="expense-value">R$ -1500,00</td>
-            <td>2024-06-22</td>
-            <td>
-                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Editar</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-              </td>
-          </tr>
-          
-          <!-- Adicionar mais gastos aqui -->
-          
-          <tr>
-            <td>2</td>
-            <td>Compra de Materiais</td>
-            <td class="expense-value">R$ -800,00</td>
-            <td>2024-06-23</td>
-            <td>
-                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Editar</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-              </td>
-          </tr>
-          
-          <tr>
-            <td>3</td>
-            <td>Manutenção de ferramentas</td>
-            <td class="expense-value">R$ -300,00</td>
-            <td>2024-06-24</td>
-            <td>
-                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Editar</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-              </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Mecanico Gol G5 branco</td>
-            <td class="expense-value">R$ -300,00</td>
-            <td>2024-06-24</td>
-            <td>
-                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Editar</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-              </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Salario Kayan</td>
-            <td class="expense-value">R$ -2.200,00</td>
-            <td>2024-06-24</td>
-            <td>
-                <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Editar</button>
-              </td>
-              <td>
-                <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-              </td>
-          </tr>
-          
+        <tbody id="tabela-gastos">
+          <!-- Aqui serão inseridos dinamicamente os gastos -->
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- Biblioteca Font Awesome para os ícones -->
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script>
-    function confirmDelete() {
-      Swal.fire({
-        title: 'Tem certeza que deseja apagar?',
-        text: 'Esta ação não pode ser revertida!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#28a745',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, apagar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Apagado!',
-            'O item foi apagado com sucesso.',
-            'success'
-          );
-          // Aqui você pode colocar a lógica para excluir o item
-          // Por exemplo, pode redirecionar para uma página de confirmação de exclusão ou fazer uma requisição AJAX para excluir o item do servidor
-          console.log("Item apagado!");
-        } else {
-          Swal.fire(
-            'Cancelado',
-            'Ação cancelada pelo usuário.',
-            'info'
-          );
-        }
-      });
-    }
-</script>
+<!-- Modal de Edição de Gasto -->
+<div id="modal-edit-gasto" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModalEdicao()">&times;</span>
+    <h2>Editar Gasto</h2>
+    <form id="form-edit-gasto">
+      <input type="hidden" id="edit-gasto-id">
+      <label for="edit-gasto-nome">Nome:</label>
+      <input type="text" id="edit-gasto-nome" required><br>
+      <label for="edit-gasto-valor">Valor (R$):</label>
+      <input type="number" id="edit-gasto-valor" step="0.01" required><br>
+      <label for="edit-gasto-data">Data:</label>
+      <input type="date" id="edit-gasto-data" required><br>
+      <label for="edit-gasto-responsavel">Responsável:</label>
+      <input type="text" id="edit-gasto-responsavel" required><br>
+      <label for="edit-gasto-observacao">Observação:</label>
+      <textarea id="edit-gasto-observacao"></textarea><br>
+      <button type="button" onclick="salvarEdicao()">Salvar</button>
+      <button type="button" onclick="fecharModalEdicao()">Cancelar</button>
+    </form>
+  </div>
+</div>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetchGastos();
+});
+
+function fetchGastos() {
+  fetch('http://localhost:3000/api/gastos')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao carregar gastos.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const tabelaGastos = document.getElementById('tabela-gastos');
+      tabelaGastos.innerHTML = ''; // Limpar tabela antes de adicionar os novos dados
+
+      data.forEach(gasto => {
+        const tr = document.createElement('tr');
+
+        // Determinar classe para cor do valor (lucro ou despesa)
+        const valorClass = gasto.tipo === 'lucro' ? 'expense-value-positive' : 'expense-value-negative';
+
+        // Determinar ícone para valores de despesa
+        const iconHtml = gasto.tipo === 'despesa' ? '<i class="fas fa-arrow-down"></i>' : '';
+
+        tr.innerHTML = `
+          <td>${gasto.id}</td>
+          <td>${gasto.titulo}</td>
+          <td class="expense-value ${valorClass}">R$ ${gasto.valor.toFixed(2)} ${iconHtml}</td>
+          <td>${new Date(gasto.data).toLocaleDateString()}</td>
+          <td>${gasto.responsavel}</td>
+          <td>
+            <button class="btn-action" onclick="editarGasto(${gasto.id})">Editar</button>
+          </td>
+          <td>
+            <button class="btn-action" onclick="detalhesGasto(${gasto.id})">Detalhes</button>
+          </td>
+          <td>
+            <button class="btn-action" onclick="confirmarExclusao(${gasto.id})">Apagar</button>
+          </td>
+        `;
+        tabelaGastos.appendChild(tr);
+      });
+    })
+    .catch(error => {
+      console.error('Erro ao carregar gastos:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao carregar gastos',
+        text: 'Ocorreu um erro ao carregar os gastos. Por favor, tente novamente mais tarde.'
+      });
+    });
+}
+
+function detalhesGasto(id) {
+  fetch(`http://localhost:3000/api/gastos/${id}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao buscar detalhes do gasto.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      Swal.fire({
+        title: `Detalhes do Gasto`,
+        html: `
+          <strong>ID:</strong> ${data.id}<br>
+          <strong>Nome:</strong> ${data.titulo}<br>
+          <strong>Valor:</strong> R$ ${data.valor.toFixed(2)}<br>
+          <strong>Data:</strong> ${new Date(data.data).toLocaleDateString()}<br>
+          <strong>Responsável:</strong> ${data.responsavel}<br>
+          <strong>Observação:</strong> ${data.observacao || 'N/A'}
+        `,
+        icon: 'info',
+        confirmButtonText: 'Fechar'
+      });
+    })
+    .catch(error => {
+      console.error('Erro ao buscar detalhes do gasto:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao buscar detalhes do gasto',
+        text: 'Ocorreu um erro ao buscar os detalhes do gasto. Por favor, tente novamente mais tarde.'
+      });
+    });
+}
+
+function confirmarExclusao(id) {
+  Swal.fire({
+    title: 'Tem certeza?',
+    text: "Você não poderá desfazer essa ação!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Sim, apagar!',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      apagarGasto(id);
+    }
+  });
+}
+
+function apagarGasto(id) {
+  fetch(`http://localhost:3000/api/gastos/${id}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro ao apagar o gasto.');
+    }
+    return response.json();
+  })
+  .then(() => {
+    fetchGastos(); // Recarregar a lista de gastos
+    Swal.fire(
+      'Apagado!',
+      'O gasto foi apagado com sucesso.',
+      'success'
+    );
+  })
+  .catch(error => {
+    console.error('Erro ao apagar gasto:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Erro ao apagar gasto',
+      text: 'Ocorreu um erro ao apagar o gasto. Por favor, tente novamente mais tarde.'
+    });
+  });
+}
+
+function editarGasto(id) {
+  fetch(`http://localhost:3000/api/gastos/${id}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao buscar dados para edição.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById('edit-gasto-id').value = data.id;
+      document.getElementById('edit-gasto-nome').value = data.titulo;
+      document.getElementById('edit-gasto-valor').value = data.valor;
+      document.getElementById('edit-gasto-data').value = data.data.split('T')[0];
+      document.getElementById('edit-gasto-responsavel').value = data.responsavel;
+      document.getElementById('edit-gasto-observacao').value = data.observacao;
+
+      // Exibir o modal de edição
+      document.getElementById('modal-edit-gasto').style.display = 'block';
+    })
+    .catch(error => {
+      console.error('Erro ao buscar dados para edição:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao buscar dados para edição',
+        text: 'Ocorreu um erro ao buscar os dados do gasto para edição. Por favor, tente novamente mais tarde.'
+      });
+    });
+}
+
+function salvarEdicao() {
+  const id = document.getElementById('edit-gasto-id').value;
+  const nome = document.getElementById('edit-gasto-nome').value;
+  const valor = parseFloat(document.getElementById('edit-gasto-valor').value);
+  const data = document.getElementById('edit-gasto-data').value;
+  const responsavel = document.getElementById('edit-gasto-responsavel').value;
+  const observacao = document.getElementById('edit-gasto-observacao').value;
+
+  const gastoEditado = {
+    titulo: nome,
+    valor: valor,
+    data: data,
+    responsavel: responsavel,
+    observacao: observacao
+  };
+
+  fetch(`http://localhost:3000/api/gastos/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(gastoEditado)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro ao salvar edição do gasto.');
+    }
+    return response.json();
+  })
+  .then(() => {
+    fetchGastos(); // Recarregar a lista de gastos
+    fecharModalEdicao();
+    Swal.fire(
+      'Salvo!',
+      'O gasto foi atualizado com sucesso.',
+      'success'
+    );
+  })
+  .catch(error => {
+    console.error('Erro ao salvar edição do gasto:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Erro ao salvar edição do gasto',
+      text: 'Ocorreu um erro ao salvar a edição do gasto. Por favor, tente novamente mais tarde.'
+    });
+  });
+}
+
+function fecharModalEdicao() {
+  document.getElementById('modal-edit-gasto').style.display = 'none';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('modal-edit-gasto');
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+};
+</script>
 </body>
 </html>

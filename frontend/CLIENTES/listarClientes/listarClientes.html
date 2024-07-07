@@ -51,168 +51,66 @@
 
   <div class="clients-section">
     <div class="client-actions">
-      <button class="btn-left">Cadastrar Cliente</button>
+      <button class="btn-left"><a href="../cadastrarClientes/cadastrarClientes.html">Cadastrar Cliente</a></button>
       <p class="btn-right">Pesquisar Cliente <input type="text"></p>
     </div><br>
     
     <h2>Lista de Clientes</h2>
     
     <div class="client-table">
-      <table>
+      <table id="clientes-table">
         <thead>
           <tr>
             <th>ID</th>
             <th>Cliente</th>
             <th>Cidade</th>
             <th>Email</th>
-            <th colspan="3">Ações</th> <!-- colspan="3" para unir as colunas das ações -->
+            <th colspan="2">Ações</th> <!-- colspan="2" para unir as colunas das ações -->
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Maria</td>
-            <td>Rio de Janeiro</td>
-            <td>maria@email.com</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>João</td>
-            <td>São Paulo</td>
-            <td>joao@email.com</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Ana</td>
-            <td>Belo Horizonte</td>
-            <td>ana@email.com</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Carlos</td>
-            <td>Curitiba</td>
-            <td>carlos@email.com</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Fernanda</td>
-            <td>Salvador</td>
-            <td>fernanda@email.com</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Roberto</td>
-            <td>Porto Alegre</td>
-            <td>roberto@email.com</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>Patrícia</td>
-            <td>Fortaleza</td>
-            <td>patricia@email.com</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
+          <!-- Aqui serão inseridos os clientes via JavaScript -->
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Modal de Edição de Cliente -->
+  <div id="modal-edit-client" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModalEditCliente()">&times;</span>
+      <h2>Editar Cliente</h2>
+      <form id="form-edit-client">
+        <input type="hidden" id="edit-client-id" name="edit-client-id">
+        <label for="edit-client-nome">Nome:</label>
+        <input type="text" id="edit-client-nome" name="edit-client-nome"><br>
+        <label for="edit-client-cpf">CPF:</label>
+        <input type="text" id="edit-client-cpf" name="edit-client-cpf"><br>
+        <label for="edit-client-telefone">Telefone:</label>
+        <input type="text" id="edit-client-telefone" name="edit-client-telefone"><br>
+        <label for="edit-client-email">Email:</label>
+        <input type="email" id="edit-client-email" name="edit-client-email"><br>
+        <label for="edit-client-cep">CEP:</label>
+        <input type="text" id="edit-client-cep" name="edit-client-cep"><br>
+        <label for="edit-client-cidade">Cidade:</label>
+        <input type="text" id="edit-client-cidade" name="edit-client-cidade"><br>
+        <label for="edit-client-uf">UF:</label>
+        <input type="text" id="edit-client-uf" name="edit-client-uf"><br>
+        <label for="edit-client-bairro">Bairro:</label>
+        <input type="text" id="edit-client-bairro" name="edit-client-bairro"><br>
+        <label for="edit-client-endereco">Endereço:</label>
+        <input type="text" id="edit-client-endereco" name="edit-client-endereco"><br>
+        <label for="edit-client-observacao">Observação:</label>
+        <textarea id="edit-client-observacao" name="edit-client-observacao"></textarea><br>
+        <button type="button" onclick="salvarEdicaoCliente()">Salvar</button>
+        <button type="button" onclick="fecharModalEditCliente()">Cancelar</button>
+      </form>
     </div>
   </div>
 </div>
 
 <!-- Biblioteca Font Awesome para os ícones -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script>
-  function confirmDelete() {
-    Swal.fire({
-      title: 'Tem certeza que deseja apagar?',
-      text: 'Esta ação não pode ser revertida!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#28a745',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sim, apagar!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Apagado!',
-          'O item foi apagado com sucesso.',
-          'success'
-        );
-        // Aqui você pode colocar a lógica para excluir o item
-        // Por exemplo, pode redirecionar para uma página de confirmação de exclusão ou fazer uma requisição AJAX para excluir o item do servidor
-        console.log("Item apagado!");
-      } else {
-        Swal.fire(
-          'Cancelado',
-          'Ação cancelada pelo usuário.',
-          'info'
-        );
-      }
-    });
-  }
-</script>
-
+<script src="LCscript.js"></script>
 </body>
 </html>

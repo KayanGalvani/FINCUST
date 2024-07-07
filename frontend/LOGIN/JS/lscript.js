@@ -1,29 +1,47 @@
-function login() {
-    const email = document.getElementById('email').value;
-    const password = document.querySelector('input[name="password"]').value;
-    const errorMessageElement = document.getElementById('errorMessage');
+const loginForm = document.getElementById('loginForm');
+const errorMessage = document.getElementById('errorMessage');
 
-    // Verifica se os campos estão preenchidos
-    if (!email || !password) {
-        errorMessageElement.textContent = 'Por favor, preencha todos os campos.';
+loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    // Limpar mensagem de erro
+    errorMessage.textContent = '';
+
+    // Verificar se todos os campos estão preenchidos
+    if (!email || !senha) {
+        errorMessage.textContent = 'Por favor, preencha todos os campos.';
         return;
     }
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(response => {
-        console.log('Sucesso ao autenticar:', response);
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, senha }),
+        });
 
-        // Redirecionar para o dashboard após o login
-        window.location.href = "../DASHBOARD/dashboard.html";
-    })
-    .catch(error => {
-        console.error('Erro ao autenticar:', error);
-
-        // Mensagem de erro específica para usuário inválido
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password') {
-            errorMessageElement.textContent = 'E-mail ou senha inválidos.';
-        } else {
-            errorMessageElement.textContent = 'E-mail ou senha inválidos.';
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 404) {
+                errorMessage.textContent = 'Credenciais inválidas. Verifique seu email e senha.';
+            } else {
+                throw new Error('Erro ao fazer login.');
+            }
+            return;
         }
-    });
-}
+
+        const data = await response.json();
+        console.log('Login bem-sucedido:', data);
+
+        // Redirecionar para a tela de dashboard
+        window.location.href = '../DASHBOARD/dashboard.html'; // Ajuste conforme sua estrutura de arquivos
+
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        errorMessage.textContent = 'Erro ao fazer login. Tente novamente mais tarde.';
+    }
+});

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fincust - Detalhes do Gasto</title>
+<link rel="stylesheet" href="LCstyle.css">
+<style>
+/* Estilos gerais */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+/* Estilos da barra lateral */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  color: #fff;
+  font-weight: bold;
+}
+
+.menu-item {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.main-content {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.dashboard-heading {
+  padding-top: 40px;
+  padding-left: 10px;
+  font-size: 80px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.dashboard-subtitle {
+  padding-left: 100px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.header-right {
+  flex-shrink: 0;
+}
+
+.user-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+/* Estilos para os links na barra lateral */
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+}
+
+.logo img {
+  width: 200px;
+  height: auto;
+  padding-right: 80px;
+}
+
+.client-details-section {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.client-details {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+
+.client-details h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.client-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.info-section {
+  flex-basis: 48%;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.info-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.observation-section {
+  text-align: center;
+}
+
+/* Estilos para o modal de detalhes */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 8px;
+}
+
+.modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="dashboard-title"></div>
+  </div>
+  
+  <div class="profile-container">
+    <div class="profile-info">
+      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><br>
+      <img src="IMG/avatar.jpeg" alt="Foto do Usuário" class="user-photo">
+    </div>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Dashboard</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Usuários</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Clientes</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Gastos</a>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="header">
+    <div class="header-left">
+      <div class="dashboard-heading">Detalhes do Gasto</div>
+      <div class="dashboard-subtitle"></div>
+    </div>
+    <div class="header-right">
+      <div class="logo">
+        <img src="IMG/Logo.png" alt="Logo do Projeto" class="logo-img">
+      </div>
+    </div>
+  </div>
+
+  <div class="client-details-section">
+    <div class="client-details">
+      <h2>Detalhes do Gasto</h2>
+      <div class="client-info">
+        <div class="info-section">
+          <div class="info-title">Informações do Gasto</div>
+          <div><strong>Título:</strong> <span id="modal-titulo"></span></div>
+          <div><strong>Responsável:</strong> <span id="modal-responsavel"></span></div>
+          <div><strong>Valor:</strong> <span id="modal-valor"></span></div>
+          <div><strong>Data:</strong> <span id="modal-data"></span></div>
+        </div>
+
+        <div class="info-section observation-section">
+          <div class="info-title">Observação</div>
+          <div id="modal-observacao"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de detalhes do gasto -->
+<div id="modalDetalhes" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="fecharModal()">&times;</span>
+    <div class="client-details">
+      <h2>Detalhes do Gasto</h2>
+      <div class="client-info">
+        <div class="info-section">
+          <div class="info-title">Informações do Gasto</div>
+          <div><strong>Título:</strong> <span id="modal-titulo"></span></div>
+          <div><strong>Responsável:</strong> <span id="modal-responsavel"></span></div>
+          <div><strong>Valor:</strong> <span id="modal-valor"></span></div>
+          <div><strong>Data:</strong> <span id="modal-data"></span></div>
+        </div>
+
+        <div class="info-section observation-section">
+          <div class="info-title">Observação</div>
+          <div id="modal-observacao"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Função para abrir o modal de detalhes do gasto
+function abrirModal(id) {
+  // Aqui você pode implementar a lógica para buscar os detalhes do gasto pelo ID
+  // Por exemplo, usando fetch() para obter os dados do gasto do servidor
+
+  // Simulando dados de exemplo
+  const gasto = {
+    id: id,
+    titulo: "Gasto de Exemplo",
+    responsavel: "Fulano de Tal",
+    valor: 150.99,
+    data: "2024-07-08",
+    observacao: "Descrição detalhada do gasto de exemplo."
+  };
+
+  // Atualizando o conteúdo do modal com os dados do gasto
+  document.getElementById('modal-titulo').textContent = gasto.titulo;
+  document.getElementById('modal-responsavel').textContent = gasto.responsavel;
+  document.getElementById('modal-valor').textContent = `R$ ${gasto.valor.toFixed(2)}`;
+  document.getElementById('modal-data').textContent = new Date(gasto.data).toLocaleDateString();
+  document.getElementById('modal-observacao').textContent = gasto.observacao;
+
+  // Abrindo o modal
+  document.getElementById('modalDetalhes').style.display = "block";
+}
+
+// Função para fechar o modal
+function fecharModal() {
+  document.getElementById('modalDetalhes').style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

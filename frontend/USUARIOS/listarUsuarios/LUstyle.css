@@ -130,33 +130,43 @@ input{
   text-align: center; /* Centraliza o texto no cabeçalho da tabela */
 }
 
+/* Estilos para a tabela de usuários */
+.user-table {
+  margin-top: 20px;
+  overflow-x: auto; /* Adiciona rolagem horizontal quando necessário */
+}
+
+.user-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+  padding: 8px; /* Reduz o padding para diminuir o espaçamento */
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  white-space: normal; /* Permite que o texto quebre para a próxima linha */
+  word-wrap: break-word; /* Força o texto a quebrar quando não couber na largura da célula */
+}
+
+.user-table th {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle; /* Alinha verticalmente o texto no cabeçalho da tabela */
+}
+
 .user-table td {
   background-color: #fff;
-  text-align: center; /* Centraliza o texto nas células da tabela */
+  text-align: center;
+  vertical-align: middle; /* Alinha verticalmente o texto nas células */
+  max-width: 200px; /* Define uma largura máxima para as células */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adiciona reticências (...) para indicar texto cortado */
 }
 
-.user-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.user-actions button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-left {
-  background-color: #F3F3F3;
-  color: #333;
-}
-
-.btn-right {
- background-color: #F3F3F3;
-  color: #333;
+.user-table .actions {
+  white-space: nowrap; /* Impede que os botões quebrem para a próxima linha */
 }
 
 .btn-action {

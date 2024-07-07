@@ -1,3 +1,5 @@
+/* frontend/CSS/lstyle.css */
+
 body {
     background-color: #F3F3F3;
     padding: 0;
@@ -16,10 +18,8 @@ body {
 }
 
 #subTitulo {
-    
     font-size: 18px; /* Aumentamos o tamanho da fonte do subtítulo */
     font-weight: 600; /* Definimos o título como semibold */
-
 }
 
 #container {
@@ -31,7 +31,7 @@ body {
 }
 
 #login {
-    background-color: #ffff;
+    background-color: #fff;
     width: 450px; /* Aumentamos a largura do contêiner de login */
     height: 520px;
     padding: 30px; /* Aumentamos o padding para dar mais espaço interno */
@@ -76,3 +76,8 @@ p {
     padding: 15px 0; /* Adiciona espaçamento vertical entre os elementos */
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

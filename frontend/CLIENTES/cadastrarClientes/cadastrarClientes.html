@@ -1,10 +1,180 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fincust - Detalhes do Cliente</title>
+<title>Fincust-Cadastro de Cliente</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="LCstyle.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="dashboard-title"></div>
+  </div>
+  
+  <div class="profile-container">
+    <div class="profile-info">
+      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><br>
+    </div>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Dashboard</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Usuários</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Clientes</a>
+  </div>
+  
+  <div class="menu-item">
+    <a href="#">Gastos</a>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="header">
+    <div class="header-left">
+      <div class="dashboard-heading">Clientes</div>
+    </div>
+    <div class="header-right">
+      <div class="logo">
+        <img src="IMG/Logo.png" alt="Logo do Projeto" class="logo-img">
+      </div>
+    </div>
+  </div>
+
+  <div class="clients-section">
+    <h2>Cadastrar Cliente</h2>
+    <form class="client-form">
+      <div class="form-row">
+        <div class="form-group form-group-full">
+          <label for="client-name">Nome do Cliente</label>
+          <input type="text" id="client-name" name="client-name" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="client-cpf">CPF</label>
+          <input type="text" id="client-cpf" name="client-cpf" required>
+        </div>
+        <div class="form-group">
+          <label for="client-phone">Telefone</label>
+          <input type="text" id="client-phone" name="client-phone" required>
+        </div>
+        <div class="form-group">
+          <label for="client-email">Email</label>
+          <input type="email" id="client-email" name="client-email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="client-cep">CEP</label>
+          <input type="text" id="client-cep" name="client-cep" required>
+        </div>
+        <div class="form-group">
+          <label for="client-city">Cidade</label>
+          <input type="text" id="client-city" name="client-city" required>
+        </div>
+        <div class="form-group form-group-small">
+          <label for="client-uf">UF</label>
+          <input type="text" id="client-uf" name="client-uf" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group form-group-medium">
+          <label for="client-bairro">Bairro</label>
+          <input type="text" id="client-bairro" name="client-bairro" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group form-group-large">
+          <label for="client-endereco">Endereço</label>
+          <input type="text" id="client-endereco" name="client-endereco" required>
+        </div>
+      </div>
+      <div class="form-row">
+
+      </div>
+      <div class="form-row">
+        <div class="form-group form-group-full">
+          <label for="client-observacao">Observação</label>
+          <textarea id="client-observacao" name="client-observacao" rows="15" required></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn-submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Biblioteca Font Awesome para os ícones -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+  document.querySelector('.client-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const formData = {
+      nome: document.getElementById('client-name').value,
+      cpf: document.getElementById('client-cpf').value,
+      telefone: document.getElementById('client-phone').value,
+      email: document.getElementById('client-email').value,
+      cep: document.getElementById('client-cep').value,
+      cidade: document.getElementById('client-city').value,
+      uf: document.getElementById('client-uf').value,
+      bairro: document.getElementById('client-bairro').value,
+      endereco: document.getElementById('client-endereco').value,
+      observacao: document.getElementById('client-observacao').value,
+    };
+
+    fetch('http://localhost:3000/api/clientes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        Swal.fire({
+          title: 'Erro!',
+          text: data.error,
+          icon: 'error',
+          confirmButtonColor: '#d33',
+          confirmButtonText: 'OK'
+        });
+      } else {
+        Swal.fire({
+          title: 'Cliente Cadastrado!',
+          text: 'O cliente foi cadastrado com sucesso.',
+          icon: 'success',
+          confirmButtonColor: '#28a745',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          window.location.href = '../listarClientes/listarClientes.html'; // Redireciona para a página de listagem de clientes
+        });
+      }
+    })
+    .catch(error => {
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Ocorreu um erro ao cadastrar o cliente.',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK'
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
 
 <style>
 /* Estilos gerais */
@@ -77,12 +247,7 @@ body {
   font-size: 80px;
   font-weight: bold;
   margin-bottom: 20px;
-}
-
-.dashboard-subtitle {
   padding-left: 100px;
-  font-size: 40px;
-  font-weight: bold;
 }
 
 .header-right {
@@ -113,355 +278,85 @@ body {
   padding-right: 80px;
 }
 
-.client-details-section {
+.clients-section {
   padding: 20px;
-  display: flex;
-  justify-content: center;
 }
 
-.client-details {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px;
+.client-form {
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.client-details h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-.client-info {
+.form-row {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.info-section {
-  flex-basis: 48%;
+  align-items: flex-start;
   margin-bottom: 20px;
-  text-align: left;
 }
 
-.info-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.form-group {
+  flex: 1;
+  margin-right: 20px;
+  padding: 10px;
 }
 
-.observation-section {
-  text-align: center;
+.form-group-small {
+  flex: 0.5;
 }
 
-.finances-table {
+.form-group-medium {
+  flex: 1.5;
+}
+
+.form-group-large {
+  flex: 2.5;
+}
+
+.form-group-full {
+  flex: 4;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
   width: 100%;
-  max-width: 900px;
-  border-collapse: collapse;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 18px;
-}
-
-.finances-table th, .finances-table td {
+  padding: 10px;
   border: 1px solid #ccc;
-  padding: 15px;
-  text-align: left; /* Alinha os valores à esquerda */
+  border-radius: 4px;
 }
 
-.finances-table th {
-  background-color: #f0f0f0;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.finances-table .btn-edit,
-.finances-table .btn-delete,
-.finances-table .btn-details {
-  padding: 8px 16px;
-  margin-right: 5px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.finances-table .btn-edit {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.finances-table .btn-edit:hover {
-  background-color: #45a049;
-}
-
-.finances-table .btn-delete {
-  background-color: #f44336;
-  color: white;
-}
-
-.finances-table .btn-delete:hover {
-  background-color: #da190b;
-}
-
-.finances-table .btn-details {
-  background-color: #008CBA;
-  color: white;
-}
-
-.finances-table .btn-details:hover {
-  background-color: #0077A3;
-}
-
-.finances-summary {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.finances-summary-item {
-  text-align: center;
-}
-
-.finances-summary-title {
-  font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.profit {
-  font-size: 30px;
-  color: green;
-}
-
-.expense {
-  font-size: 30px;
-  color: red;
-}
-
-/* Estilos para gasto, despesa e total líquido abaixo da tabela */
-.finances-summary-below {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.finances-summary-below .summary-item {
-  text-align: center;
-  flex-basis: 30%;
-}
-
-.finances-summary-below .summary-item .summary-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Estilizando valores negativos em vermelho e positivos em verde */
-.finances-table td {
-  color: black; /* Define a cor padrão para os valores */
-}
-
-.finances-table td.amount {
-  font-weight: bold;
-}
-
-.finances-table td.amount.expense {
-  font-size: 20px;
-  color: red; /* Valores negativos em vermelho */
-}
-
-.finances-table td.amount.profit {
-  font-size: 20px;
-  color: green; /* Valores positivos em verde */
-}
-
-/* Estilos do botão de cadastrar */
-.btn-cadastrar {
-  background-color: #008CBA;
-  color: white;
+.btn-submit {
+  background-color: #218838;
+  color: #fff;
   padding: 10px 20px;
-  margin-bottom: 20px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto 0 auto;
+  font-size: 25px;
 }
 
-.btn-cadastrar:hover {
-  background-color: #0077A3;
+.btn-submit:hover {
+  background-color: #218838;
 }
 
+/* Ajustes para o último item da linha */
+.form-group:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .form-group {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
 </style>
-
-</head>
-<body>
-
-<div class="sidebar">
-  <div class="sidebar-header">
-    <div class="dashboard-title"></div>
-  </div>
-  
-  <div class="profile-container">
-    <div class="profile-info">
-      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><br>
-      <img src="IMG/avatar.jpeg" alt="Foto do Usuário" class="user-photo">
-    </div>
-  </div>
-  
-  <div class="menu-item">
-    <a href="#">Dashboard</a>
-  </div>
-  
-  <div class="menu-item">
-    <a href="#">Usuários</a>
-  </div>
-  
-  <div class="menu-item">
-    <a href="#">Clientes</a>
-  </div>
-  
-  <div class="menu-item">
-    <a href="#">Gastos</a>
-  </div>
-</div>
-
-<div class="main-content">
-  <div class="header">
-    <div class="header-left">
-      <div class="dashboard-heading">Clientes</div>
-      <div class="dashboard-subtitle"></div>
-    </div>
-    <div class="header-right">
-      <div class="logo">
-        <img src="IMG/Logo.png" alt="Logo do Projeto" class="logo-img">
-      </div>
-    </div>
-  </div>
-
-  <div class="client-details-section">
-    <div class="client-details">
-      <h2>Detalhes do Cliente</h2>
-      <div class="client-info">
-        <div class="info-section">
-          <div class="info-title">Informações Pessoais</div>
-          <div><strong>Nome:</strong> Kayan Gavani</div>
-          <div><strong>CPF:</strong> 123.456.789-00</div>
-          <div><strong>Telefone:</strong> (11) 98765-4321</div>
-          <div><strong>Email:</strong> kayan@example.com</div>
-        </div>
-        <div class="info-section">
-          <div class="info-title">Endereço</div>
-          <div><strong>CEP:</strong> 12345-678</div>
-          <div><strong>Cidade:</strong> São Paulo</div>
-          <div><strong>UF:</strong> SP</div>
-          <div><strong>Bairro:</strong> Centro</div>
-          <div><strong>Endereço:</strong> Av. Paulista, 1234</div>
-        </div>
-      </div>
-      <div class="info-section observation-section">
-        <BR></BR><div class="info-title">Observação</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam condimentum metus ut neque tempus, vel elementum turpis rutrum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam condimentum metus ut neque tempus, vel elementum turpis rutrum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam condimentum metus ut neque tempus, vel elementum turpis rutrum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam condimentum metus ut neque tempus, vel elementum turpis rutrum.</div>
-      <BR><BR><BR></BR></div>
-    </div>
-  </div>
-
-  <table class="finances-table">
-    <thead>
-      <tr>
-        <th colspan="4" style="text-align: center;">
-          <button class="btn-cadastrar">Cadastrar</button>
-        </th>
-      </tr>
-      <tr>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Valor</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Fechamento de contrato</td>
-        <td class="amount profit">R$ 50.000,00</td>
-        <td>
-          <button class="btn-edit">Editar</button>
-          <button class="btn-delete">Deletar</button>
-          <button class="btn-details">Detalhes</button>
-        </td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Combustível</td>
-        <td class="amount expense">R$ -200,00</td>
-        <td>
-          <button class="btn-edit">Editar</button>
-          <button class="btn-delete">Deletar</button>
-          <button class="btn-details">Detalhes</button>
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Compra do equipamento</td>
-        <td class="amount expense">R$ -26.000,00</td>
-        <td>
-          <button class="btn-edit">Editar</button>
-          <button class="btn-delete">Deletar</button>
-          <button class="btn-details">Detalhes</button>
-        </td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Pagamento dia funcionários</td>
-        <td class="amount expense">R$ -550,00</td>
-        <td>
-          <button class="btn-edit">Editar</button>
-          <button class="btn-delete">Deletar</button>
-          <button class="btn-details">Detalhes</button>
-        </td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Compra de materiais</td>
-        <td class="amount expense">R$ -6.400,00</td>
-        <td>
-          <button class="btn-edit">Editar</button>
-          <button class="btn-delete">Deletar</button>
-          <button class="btn-details">Detalhes</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-<br><br><br>
-  <div class="finances-summary-below">
-    <div class="summary-item">
-      <div class="finances-summary-title">Despesa Total</div>
-      <div class="expense">R$ 33.150,00</div>
-    </div>
-    <div class="summary-item">
-      <div class="finances-summary-title">Total Bruto</div>
-      <div class="profit">R$ 50.000,00</div>
-    </div>
-    <div class="summary-item">
-      <div class="finances-summary-title">Total Líquido</div>
-      <div class="profit">R$ 16.850,00</div>
-    </div>
-  </div>
-
-</div>
-
-</body>
-</html>

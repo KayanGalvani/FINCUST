@@ -3,9 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fincust-Usuario</title>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>Fincust - Usuários</title>
 <link rel="stylesheet" href="LUstyle.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+/* Estilo para o botão de cadastrar */
+.submit {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Cor do texto branco */
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Sem borda */
+    cursor: pointer; /* Cursor de ponteiro ao passar por cima */
+    border-radius: 5px; /* Borda arredondada */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+.submit:hover {
+    background-color: #45a049; /* Cor de fundo mais escura ao passar por cima */
+}
+</style>
 </head>
 <body>
 
@@ -16,7 +32,7 @@
   
   <div class="profile-container">
     <div class="profile-info">
-      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><BR>
+      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><br>
       <img src="IMG/avatar.jpeg" alt="Foto do Usuário" class="user-photo">
     </div>
   </div>
@@ -41,7 +57,7 @@
 <div class="main-content">
   <div class="header">
     <div class="header-left">
-      <div class="dashboard-heading">Usuarios</div>
+      <div class="dashboard-heading">Usuários</div>
     </div>
     <div class="header-right">
       <div class="logo">
@@ -53,7 +69,7 @@
   <div class="users-section">
     <div class="user-actions">
       <a href="../cadastrarUsuarios/cadastrarUsuarios.html"><button class="submit">Cadastrar Usuário</button></a>
-      <p class="btn-right">Pesquisar Cliente <input type=""></p>
+      <p class="btn-right">Pesquisar Usuário <input type="text"></p>
     </div><br>
     
     <h2>Lista de Usuários</h2>
@@ -63,68 +79,23 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Usuário</th>
-            <th>Cidade</th>
-            <th colspan="3">Ações</th> <!-- colspan="3" para unir as colunas das ações -->
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th colspan="2">Ações</th> <!-- Removido o colspan="3" para ajustar à quantidade de colunas -->
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>João</td>
-            <td>São Paulo</td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Detalhes</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Editar</button>
-            </td>
-            <td>
-              <button class="btn-action" onclick="confirmDelete()">Apagar</button>
-            </td>
-          </tr>
-          <!-- Adicione mais linhas conforme necessário -->
+        <tbody id="tabela-usuarios">
+          <!-- As linhas da tabela serão preenchidas dinamicamente com JavaScript -->
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- Biblioteca Font Awesome para os ícones -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script>
-  function confirmDelete() {
-    Swal.fire({
-      title: 'Tem certeza que deseja apagar?',
-      text: 'Esta ação não pode ser revertida!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#28a745',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sim, apagar!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Apagado!',
-          'O item foi apagado com sucesso.',
-          'success'
-        );
-        // Aqui você pode colocar a lógica para excluir o item
-        // Por exemplo, pode redirecionar para uma página de confirmação de exclusão ou fazer uma requisição AJAX para excluir o item do servidor
-        console.log("Item apagado!");
-      } else {
-        Swal.fire(
-          'Cancelado',
-          'Ação cancelada pelo usuário.',
-          'info'
-        );
-      }
-    });
-  }
-  </script>
-
-
+<script src="LUscript.js"></script>
 
 </body>
 </html>

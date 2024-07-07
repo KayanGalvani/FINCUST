@@ -1,37 +1,42 @@
+document.getElementById('user-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Evita o comportamento padrão de envio do formulário
 
-function showLoading() {
-    Swal.fire({
-        title: 'Carregando...',
-        allowOutsideClick: false,
-        onBeforeOpen: () => {
-            Swal.showLoading()
-        }
-    });
-}
+    const formData = {
+        nome: document.getElementById('user-name').value,
+        cpf: document.getElementById('user-cpf').value,
+        telefone: document.getElementById('user-phone').value,
+        email: document.getElementById('user-email').value,
+        senha: document.getElementById('user-password').value
+    };
 
-function hideLoading() {
-    Swal.close();
-}
-
-function register(event) {
-    event.preventDefault(); // Evita o envio do formulário padrão
-
-    showLoading();
-
-    const email = document.getElementById("user-email").value;
-    const password = document.getElementById("user-password").value;
-
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Registro bem-sucedido
-            console.log('Sucesso', userCredential);
-            hideLoading();
-            Swal.fire('Sucesso', 'Usuário registrado com sucesso!', 'success');
-        })
-        .catch((error) => {
-            // Tratamento de erros
-            console.error('Erro ao registrar', error);
-            hideLoading();
-            Swal.fire('Erro', 'Erro ao registrar: ' + error.message, 'error');
+    try {
+        const response = await fetch('http://localhost:3000/api/usuarios/cadastrar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
         });
-}
+
+        if (response.ok) {
+            Swal.fire({
+                title: 'Sucesso',
+                text: 'Usuário cadastrado com sucesso!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                // Redireciona para a página de lista após o clique em OK
+                window.location.href = '../listarUsuarios/listarUsuarios.html';
+            });
+
+            // Limpar o formulário após o sucesso, se necessário
+            document.getElementById('user-form').reset();
+        } else {
+            const errorData = await response.json();
+            Swal.fire('Erro', errorData.error, 'error');
+        }
+    } catch (error) {
+        console.error('Erro ao cadastrar usuário:', error);
+        Swal.fire('Erro', 'Erro ao cadastrar usuário', 'error');
+    }
+});
