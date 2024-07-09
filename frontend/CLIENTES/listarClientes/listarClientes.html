@@ -11,12 +11,12 @@
 
 <div class="sidebar">
   <div class="sidebar-header">
-    <div class="dashboard-title"></div>
+    <div class="dashboard-title">Fincust</div>
   </div>
   
   <div class="profile-container">
     <div class="profile-info">
-      <div class="profile-name"><h2>KAYAN GAVANI</h2></div><br>
+      <div class="profile-name"><h2>USUARIO NAME</h2></div><br>
     </div>
   </div>
   
@@ -51,8 +51,7 @@
 
   <div class="clients-section">
     <div class="client-actions">
-      <button class="btn-left"><a href="../cadastrarClientes/cadastrarClientes.html">Cadastrar Cliente</a></button>
-      <p class="btn-right">Pesquisar Cliente <input type="text"></p>
+      <button class="btn-left btn-cadastrar" onclick="window.location.href='../cadastrarClientes/cadastrarClientes.html'">Cadastrar Cliente</button>    
     </div><br>
     
     <h2>Lista de Clientes</h2>
@@ -65,52 +64,49 @@
             <th>Cliente</th>
             <th>Cidade</th>
             <th>Email</th>
-            <th colspan="2">Ações</th> <!-- colspan="2" para unir as colunas das ações -->
+            <th colspan="3">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Aqui serão inseridos os clientes via JavaScript -->
+          <!-- Clientes serão carregados aqui via JavaScript -->
         </tbody>
       </table>
     </div>
   </div>
+</div>
 
-  <!-- Modal de Edição de Cliente -->
-  <div id="modal-edit-client" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fecharModalEditCliente()">&times;</span>
-      <h2>Editar Cliente</h2>
-      <form id="form-edit-client">
-        <input type="hidden" id="edit-client-id" name="edit-client-id">
-        <label for="edit-client-nome">Nome:</label>
-        <input type="text" id="edit-client-nome" name="edit-client-nome"><br>
-        <label for="edit-client-cpf">CPF:</label>
-        <input type="text" id="edit-client-cpf" name="edit-client-cpf"><br>
-        <label for="edit-client-telefone">Telefone:</label>
-        <input type="text" id="edit-client-telefone" name="edit-client-telefone"><br>
-        <label for="edit-client-email">Email:</label>
-        <input type="email" id="edit-client-email" name="edit-client-email"><br>
-        <label for="edit-client-cep">CEP:</label>
-        <input type="text" id="edit-client-cep" name="edit-client-cep"><br>
-        <label for="edit-client-cidade">Cidade:</label>
-        <input type="text" id="edit-client-cidade" name="edit-client-cidade"><br>
-        <label for="edit-client-uf">UF:</label>
-        <input type="text" id="edit-client-uf" name="edit-client-uf"><br>
-        <label for="edit-client-bairro">Bairro:</label>
-        <input type="text" id="edit-client-bairro" name="edit-client-bairro"><br>
-        <label for="edit-client-endereco">Endereço:</label>
-        <input type="text" id="edit-client-endereco" name="edit-client-endereco"><br>
-        <label for="edit-client-observacao">Observação:</label>
-        <textarea id="edit-client-observacao" name="edit-client-observacao"></textarea><br>
-        <button type="button" onclick="salvarEdicaoCliente()">Salvar</button>
-        <button type="button" onclick="fecharModalEditCliente()">Cancelar</button>
-      </form>
-    </div>
+<div id="modal-edit-client" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModalEditCliente()">&times;</span>
+    <h2>Editar Cliente</h2>
+    <form id="edit-client-form" onsubmit="salvarEdicaoCliente(); return false;">
+      <input type="hidden" id="edit-client-id">
+      <label for="edit-client-nome">Nome:</label>
+      <input type="text" id="edit-client-nome" required>
+      <label for="edit-client-cpf">CPF:</label>
+      <input type="text" id="edit-client-cpf" required>
+      <label for="edit-client-telefone">Telefone:</label>
+      <input type="text" id="edit-client-telefone" required>
+      <label for="edit-client-email">Email:</label>
+      <input type="email" id="edit-client-email" required>
+      <label for="edit-client-cep">CEP:</label>
+      <input type="text" id="edit-client-cep" required>
+      <label for="edit-client-cidade">Cidade:</label>
+      <input type="text" id="edit-client-cidade" required>
+      <label for="edit-client-uf">UF:</label>
+      <input type="text" id="edit-client-uf" required>
+      <label for="edit-client-bairro">Bairro:</label>
+      <input type="text" id="edit-client-bairro" required>
+      <label for="edit-client-endereco">Endereço:</label>
+      <input type="text" id="edit-client-endereco" required>
+      <label for="edit-client-observacao">Observação:</label>
+      <textarea id="edit-client-observacao" rows="3"></textarea>
+      <button type="submit">Salvar</button>
+      <button type="button" onclick="fecharModalEditCliente()">Cancelar</button>
+    </form>
   </div>
 </div>
 
-<!-- Biblioteca Font Awesome para os ícones -->
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="LCscript.js"></script>
 </body>
 </html>

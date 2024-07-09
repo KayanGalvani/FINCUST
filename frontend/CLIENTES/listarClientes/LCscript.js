@@ -14,6 +14,7 @@ function carregarClientes() {
             <td>${cliente.cidade}</td>
             <td>${cliente.email}</td>
             <td>
+              <button class="btn-action" onclick="exibirDetalhesCliente(${cliente.id})">Detalhes</button>
               <button class="btn-action" onclick="exibirModalEditCliente(${cliente.id})">Editar</button>
               <button class="btn-action" onclick="confirmarExclusaoCliente(${cliente.id})">Apagar</button>
             </td>
@@ -25,6 +26,11 @@ function carregarClientes() {
     .catch(error => {
       console.error('Erro ao carregar clientes:', error);
     });
+}
+
+// Função para exibir os detalhes do cliente
+function exibirDetalhesCliente(clienteId) {
+  window.location.href = `../detalhesClientes/detalhesClientes.html?id=${clienteId}`;
 }
 
 // Função para confirmar exclusão de cliente

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Cliente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalhes do Cliente</h1>
+    <ul>
+        <li><strong>Nome:</strong> <%= cliente.nome %></li>
+        <li><strong>CPF:</strong> <%= cliente.cpf %></li>
+        <li><strong>Telefone:</strong> <%= cliente.telefone %></li>
+        <li><strong>Email:</strong> <%= cliente.email %></li>
+        <li><strong>CEP:</strong> <%= cliente.cep %></li>
+        <li><strong>Cidade:</strong> <%= cliente.cidade %></li>
+        <li><strong>UF:</strong> <%= cliente.uf %></li>
+        <li><strong>Bairro:</strong> <%= cliente.bairro %></li>
+        <li><strong>Endereço:</strong> <%= cliente.endereco %></li>
+        <li><strong>Observação:</strong> <%= cliente.observacao %></li>
+    </ul>
+</body>
+</html>

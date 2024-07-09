@@ -280,3 +280,16 @@ body {
     width: 95%;
   }
 }
+.btn-cadastrar {
+  background-color: #28a745; /* Cor de fundo verde */
+  color: white; /* Cor do texto */
+  border: none; /* Remove a borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor ao passar por cima */
+  border-radius: 5px; /* Borda arredondada */
+}
+
+.btn-cadastrar:hover {
+  background-color: #218838; /* Cor de fundo mais escura ao passar o mouse */
+}

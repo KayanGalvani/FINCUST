@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Rota para listar todos os clientes
+// Rota para buscar todos os clientes
 router.get('/', async (req, res) => {
   try {
     const clientes = await Cliente.findAll();
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Rota para buscar um cliente pelo ID
+// Rota para mostrar os detalhes de um cliente
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
     if (!cliente) {
       return res.status(404).json({ error: 'Cliente não encontrado' });
     }
-    res.status(200).json(cliente);
+    res.render('cliente', { cliente }); // Renderiza o template 'cliente.ejs' com os dados do cliente
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
