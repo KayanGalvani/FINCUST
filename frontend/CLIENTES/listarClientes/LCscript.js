@@ -50,11 +50,14 @@ function confirmarExclusaoCliente(clienteId) {
       fetch(`http://localhost:3000/api/clientes/${clienteId}`, {
         method: 'DELETE'
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao excluir cliente.');
-        }
-        return response.json();
+      .then(data => {
+        Swal.fire(
+          'Apagado!',
+          'O cliente foi apagado com sucesso.',
+          'success'
+        );
+        // Atualiza a tabela após exclusão
+        carregarClientes();
       })
       .then(data => {
         Swal.fire(
@@ -66,12 +69,14 @@ function confirmarExclusaoCliente(clienteId) {
         carregarClientes();
       })
       .catch(error => {
-        console.error('Erro ao apagar cliente:', error);
+        console.error('Erro ao apagar cliente:', error); // Loga o erro específico de exclusão
         Swal.fire(
           'Erro!',
           'Ocorreu um erro ao apagar o cliente.',
           'error'
         );
+        // Atualiza a tabela mesmo em caso de erro para refletir a exclusão no frontend
+        carregarClientes();
       });
     }
   });
@@ -132,7 +137,7 @@ function salvarEdicaoCliente() {
   const endereco = document.getElementById('edit-client-endereco').value;
   const observacao = document.getElementById('edit-client-observacao').value;
 
-  const clienteData = {
+  const cliente = {
     nome,
     cpf,
     telefone,
@@ -150,37 +155,34 @@ function salvarEdicaoCliente() {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(clienteData)
+    body: JSON.stringify(cliente)
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Erro ao salvar edição do cliente.');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Cliente editado com sucesso:', data);
-    Swal.fire(
-      'Sucesso!',
-      'As informações do cliente foram atualizadas.',
-      'success'
-    );
-    // Fecha o modal após salvar
-    fecharModalEditCliente();
-    // Atualiza a tabela de clientes
-    carregarClientes();
-  })
-  .catch(error => {
-    console.error('Erro ao editar cliente:', error);
-    Swal.fire(
-      'Erro!',
-      'Ocorreu um erro ao editar o cliente.',
-      'error'
-    );
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na resposta do servidor.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      Swal.fire(
+        'Sucesso!',
+        'O cliente foi atualizado com sucesso.',
+        'success'
+      );
+      // Fecha a modal de edição
+      fecharModalEditCliente();
+      // Atualiza a tabela de clientes
+      carregarClientes();
+    })
+    .catch(error => {
+      console.error('Erro ao salvar edição do cliente:', error);
+      Swal.fire(
+        'Erro!',
+        'Ocorreu um erro ao salvar a edição do cliente.',
+        'error'
+      );
+    });
 }
 
 // Carrega os clientes ao iniciar a página
-document.addEventListener('DOMContentLoaded', () => {
-  carregarClientes();
-});
+document.addEventListener('DOMContentLoaded', carregarClientes);

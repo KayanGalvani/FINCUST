@@ -1,0 +1,366 @@
+/* Estilos gerais */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos da barra lateral */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  color: #fff;
+  font-weight: bold;
+}
+
+.menu-item {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.main-content {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.dashboard-heading {
+  padding-top: 40px;
+  padding-left: 10px;
+  font-size: 80px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.dashboard-subtitle {
+  padding-left: 100px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.header-right {
+  flex-shrink: 0;
+}
+
+.user-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+/* Estilos para os links na barra lateral */
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+}
+
+.logo img {
+  width: 200px;
+  height: auto;
+  padding-right: 80px;
+}
+
+.client-details-section {
+  margin-bottom: 100px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Altera para coluna para centralizar melhor */
+  align-items: center; /* Centraliza horizontalmente */
+}
+
+.client-details {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px; /* Espaço entre client-details e client-finances */
+  text-align: center; /* Centraliza o conteúdo dentro do bloco */
+}
+
+.client-details h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.client-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.info-section, .observation-section {
+  display: flex;
+  margin-bottom: 10px;
+  width: 48%;
+}
+
+.info-title {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.client-finances {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: none;
+  text-align: center;
+  margin: 50px auto; /* Ajusta a margem superior e inferior para centralizar verticalmente */
+}
+
+
+.client-finances h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+#gastos-table {
+  width: 70%; /* Define a largura da tabela */
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: center; /* Centraliza o conteúdo das células */
+  margin: auto; /* Centraliza horizontalmente */
+}
+
+
+#gastos-table th, #gastos-table td {
+  border: 1px solid #555;
+  padding: 12px;
+  text-align: left;
+}
+
+#gastos-table th {
+  background-color: #555;
+  color: white;
+}
+
+
+button {
+  background-color: #555;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 2px; /* Espaçamento entre os botões */
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.edit-btn {
+  background-color: #FFC107; /* Cor para o botão de editar */
+}
+
+.delete-btn {
+  background-color: #F44336; /* Cor para o botão de excluir */
+}
+
+.detail-btn {
+  background-color: #2196F3; /* Cor para o botão de detalhar */
+}
+
+.edit-btn:hover {
+  background-color: #FFB300; /* Cor ao passar o mouse no botão de editar */
+}
+
+.delete-btn:hover {
+  background-color: #F33527; /* Cor ao passar o mouse no botão de excluir */
+}
+
+.detail-btn:hover {
+  background-color: #1E88E5; /* Cor ao passar o mouse no botão de detalhar */
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: #555;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  /* Estilos opcionais para ajustar o layout conforme necessário */
+  .info-section {
+    margin-bottom: 20px;
+  }
+
+  .gastos-section {
+    margin-top: 20px;
+  }
+
+  /* Estilo para a tabela de gastos */
+  .gastos-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  #gastos-table th, #gastos-table td {
+    border: 1px solid #555;
+    padding: 12px; /* Reduzindo o padding de 12px para 8px */
+    text-align: left;
+  }
+  .gastos-table th {
+    background-color: #555;
+  }
+
+  .gastos-table tbody tr:nth-child(even) {
+    background-color: #555;
+  }
+
+  .gastos-table tbody tr:hover {
+    background-color: #555;
+  }
+
+  .gastos-actions {
+    display: flex;
+    gap: 5px;
+  }border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+  background-color: #555;
+}
+
+.client-finances {
+  /* Mantenha o restante do seu estilo existente */
+  margin-top: 50px; /* Ajuste conforme necessário para o espaçamento desejado */
+}
+/* Estilos para o balanço financeiro na página de detalhes do cliente */
+/* Estilos para o balanço financeiro na página de detalhes do cliente */
+/* Estilos para o balanço financeiro na página de detalhes do cliente */
+/* Estilos para o balanço financeiro na página de detalhes do cliente */
+.balance-section {
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.balance-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#balance-table {
+  width: 70%; /* Define a largura da tabela */
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: center; /* Centraliza o conteúdo das células */
+  margin: auto; /* Centraliza horizontalmente */
+}
+
+#balance-table th,
+#balance-table td {
+  border: 1px solid #555;
+  padding: 12px;
+  text-align: left;
+}
+
+#balance-table th {
+  background-color: #555;
+  color: white;
+}
+
+#balance-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#balance-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Estilos para os valores de gastos (em vermelho) e lucros (em verde) */
+#balance-table .gasto {
+  color: red;
+}
+
+#balance-table .lucro {
+  color: green;
+}
+
+/* Estilos para o balanço líquido (positivo e negativo) */
+#balance-table .positivo {
+  color: green;
+  font-weight: bold;
+}
+
+#balance-table .negativo {
+  color: red;
+  font-weight: bold;
+}
+#total-gastos{
+  color: red;
+  font-weight: bold;
+}
+
+#total-lucros{
+  color: green;
+  font-weight: bold;
+}
+#balance-liquido{
+  font-weight: bold;
+}

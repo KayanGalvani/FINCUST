@@ -27,17 +27,120 @@
 </head>
 <body>
     <h1>Detalhes do Cliente</h1>
-    <ul>
-        <li><strong>Nome:</strong> <%= cliente.nome %></li>
-        <li><strong>CPF:</strong> <%= cliente.cpf %></li>
-        <li><strong>Telefone:</strong> <%= cliente.telefone %></li>
-        <li><strong>Email:</strong> <%= cliente.email %></li>
-        <li><strong>CEP:</strong> <%= cliente.cep %></li>
-        <li><strong>Cidade:</strong> <%= cliente.cidade %></li>
-        <li><strong>UF:</strong> <%= cliente.uf %></li>
-        <li><strong>Bairro:</strong> <%= cliente.bairro %></li>
-        <li><strong>Endereço:</strong> <%= cliente.endereco %></li>
-        <li><strong>Observação:</strong> <%= cliente.observacao %></li>
-    </ul>
+    <p><strong>Nome:</strong> <%= cliente.nome %></p>
+    <p><strong>CPF:</strong> <%= cliente.cpf %></p>
+    <p><strong>Telefone:</strong> <%= cliente.telefone %></p>
+    <p><strong>Email:</strong> <%= cliente.email %></p>
+    <p><strong>CEP:</strong> <%= cliente.cep %></p>
+    <p><strong>Cidade:</strong> <%= cliente.cidade %></p>
+    <p><strong>UF:</strong> <%= cliente.uf %></p>
+    <p><strong>Bairro:</strong> <%= cliente.bairro %></p>
+    <p><strong>Endereço:</strong> <%= cliente.endereco %></p>
+    <p><strong>Observação:</strong> <%= cliente.observacao %></p>
+
+    <h2>Gastos e Lucros</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Observação</th>
+                <th>Responsável</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="gastos-tbody">
+            <!-- Os dados serão carregados aqui via JavaScript -->
+        </tbody>
+    </table>
+
+    <h3>Adicionar Gasto/Lucro</h3>
+    <form id="gasto-form">
+        <input type="hidden" name="clienteId" value="<%= cliente.id %>">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" required>
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" name="valor" required>
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required>
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo" required>
+            <option value="gasto">Gasto</option>
+            <option value="lucro">Lucro</option>
+        </select>
+        <label for="observacao">Observação:</label>
+        <input type="text" id="observacao" name="observacao">
+        <label for="responsavel">Responsável:</label>
+        <input type="text" id="responsavel" name="responsavel">
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const clienteId = '<%= cliente.id %>';
+            const gastosTbody = document.getElementById('gastos-tbody');
+            const gastoForm = document.getElementById('gasto-form');
+
+            // Carregar gastos/lucros do cliente
+            fetch(`/api/gastoClientes/cliente/${clienteId}`)
+                .then(response => response.json())
+                .then(gastos => {
+                    gastos.forEach(gasto => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${gasto.descricao}</td>
+                            <td>${gasto.valor}</td>
+                            <td>${new Date(gasto.data).toLocaleDateString()}</td>
+                            <td>${gasto.tipo}</td>
+                            <td>${gasto.observacao}</td>
+                            <td>${gasto.responsavel}</td>
+                            <td>
+                                <button data-id="${gasto.id}" class="edit-btn">Editar</button>
+                                <button data-id="${gasto.id}" class="delete-btn">Apagar</button>
+                            </td>
+                        `;
+                        gastosTbody.appendChild(row);
+                    });
+                });
+
+            // Adicionar novo gasto/lucro
+            gastoForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(gastoForm);
+                const data = Object.fromEntries(formData);
+
+                fetch('/api/gastoClientes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(gasto => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${gasto.descricao}</td>
+                        <td>${gasto.valor}</td>
+                        <td>${new Date(gasto.data).toLocaleDateString()}</td>
+                        <td>${gasto.tipo}</td>
+                        <td>${gasto.observacao}</td>
+                        <td>${gasto.responsavel}</td>
+                        <td>
+                            <button data-id="${gasto.id}" class="edit-btn">Editar</button>
+                            <button data-id="${gasto.id}" class="delete-btn">Apagar</button>
+                        </td>
+                    `;
+                    gastosTbody.appendChild(row);
+                    gastoForm.reset();
+                });
+            });
+
+            // Função para editar gasto/lucro (Você pode implementar isso depois)
+            // Função para apagar gasto/lucro (Você pode implementar isso depois)
+        });
+    </script>
 </body>
 </html>
