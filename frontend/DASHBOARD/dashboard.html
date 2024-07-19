@@ -50,12 +50,12 @@
 
   <div class="statistics">
     <h2>Estatísticas Financeiras</h2>
-    <div class="total-bruto">Total Bruto: R$ 100.000</div>
-    <div class="total-despesas">Total Despesas: R$ 20.000</div>
-    <div class="lucro-liquido">Lucro Líquido: R$ 80.000</div>
+    <div class="total-bruto">Total Bruto: <span id="total-bruto">Carregando...</span></div>
+    <div class="total-despesas">Total Despesas: <span id="total-despesas">Carregando...</span></div>
+    <div class="lucro-liquido">Lucro Líquido: <span id="lucro-liquido">Carregando...</span></div>
     <!-- Gráficos ou indicadores visuais podem ser adicionados aqui -->
   </div>
-<br>
+
   <div class="report-generator">
     <h2>Gerador de Relatórios</h2>
     <!-- Formulário para gerar relatórios -->
@@ -64,12 +64,12 @@
       <input type="date" id="data_inicio" name="data_inicio">
       <label for="data_fim">Data de Fim:</label>
       <input type="date" id="data_fim" name="data_fim">
-      <button type="submit">Gerar Relatório</button>
+      <button type="button" id="btn-gerar-relatorio">Gerar Relatório</button>
     </form>
   </div>
 </div>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="../firebaseInit.js"></script>
+
+<script src="JS/dashboard.js"></script> <!-- Adicione seu script JavaScript aqui -->
 </body>
 </html>
+  

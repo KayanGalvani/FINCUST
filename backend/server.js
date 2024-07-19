@@ -1,3 +1,5 @@
+// server.js
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -6,7 +8,9 @@ const authRotas = require('./routes/authRotas');
 const usuarioRotas = require('./routes/usuarioRotas');
 const gastoRotas = require('./routes/gastoRotas');
 const clienteRotas = require('./routes/clienteRotas');
-const gastoClienteRotas = require('./routes/gastoClienteRotas');
+const gastoClienteRotas = require('./routes/gastoClienteRotas'); // Importe as rotas de gastoCliente
+const dashboardRoutes = require('./routes/dashboard');
+
 const path = require('path');
 const sequelize = require('./config/database');
 
@@ -14,8 +18,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Configuração do mecanismo de modelo EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs'); // Define o mecanismo de modelo como EJS
+app.set('views', path.join(__dirname, 'views')); // Define o diretório onde estão os arquivos de modelo
 
 // Middleware para tratar requisições JSON e URL-encoded
 app.use(bodyParser.json());
@@ -29,24 +33,19 @@ app.use(session({
   secret: 'secreto',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }
+  cookie: { secure: false } // Verificar necessidade de secure: true em produção com HTTPS
 }));
 
-// Middleware para servir arquivos estáticos (opcional)
+// Middleware para servir arquivos estáticos (opcional, dependendo do seu projeto)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware de log para depuração
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
-
 // Rotas
-app.use('/api/auth', authRotas);
-app.use('/api/usuarios', usuarioRotas);
-app.use('/api/gastos', gastoRotas);
-app.use('/api/clientes', clienteRotas);
-app.use('/api/gastoClientes', gastoClienteRotas);
+app.use('/api/auth', authRotas); // Rotas de autenticação
+app.use('/api/usuarios', usuarioRotas); // Rotas de usuários
+app.use('/api/gastos', gastoRotas); // Rotas de gastos
+app.use('/api/clientes', clienteRotas); // Rotas de clientes
+app.use('/api/gastoClientes', gastoClienteRotas); // Rotas de gastoCliente
+app.use('/api/dashboard', dashboardRoutes);
 
 // Iniciar servidor
 sequelize.sync().then(() => {

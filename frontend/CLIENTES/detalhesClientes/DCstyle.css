@@ -364,3 +364,7 @@ button[type="submit"]:hover {
 #balance-liquido{
   font-weight: bold;
 }
+
+#btnCadastrar{
+  background-color: green;
+}
