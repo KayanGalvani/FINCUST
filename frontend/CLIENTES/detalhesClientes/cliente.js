@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('client-cpf').textContent = cliente.cpf || 'N/A';
         document.getElementById('client-telefone').textContent = cliente.telefone || 'N/A';
         document.getElementById('client-email').textContent = cliente.email || 'N/A';
-        document.getElementById('client-responsavel').textContent = cliente.responsavel || 'N/A';
         document.getElementById('client-cep').textContent = cliente.cep || 'N/A';
         document.getElementById('client-cidade').textContent = cliente.cidade || 'N/A';
         document.getElementById('client-uf').textContent = cliente.uf || 'N/A';
@@ -169,38 +168,44 @@ document.addEventListener('DOMContentLoaded', function() {
           if (result.value) {
             Swal.fire('Sucesso!', 'Gasto/lucro adicionado com sucesso.', 'success');
             // Atualizar lista de gastos/lucros
-            fetch(`http://localhost:3000/api/gastoClientes/cliente/${clienteId}`)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Gastos/lucros do cliente não encontrados');
-                }
-                return response.json();
-              })
-              .then(gastos => {
-                console.log('Gastos/lucros atualizados:', gastos);
-                const gastosTbody = document.getElementById('gastos-tbody');
-                gastosTbody.innerHTML = ''; // Limpar tabela
-                gastos.forEach(gasto => {
-                  const row = document.createElement('tr');
-                  row.innerHTML = `
-                    <td>${gasto.id}</td>
-                    <td>${gasto.descricao}</td>
-                    <td>${gasto.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                    <td>${new Date(gasto.data).toLocaleDateString()}</td>
-                    <td>${gasto.tipo}</td>
-                    <td>
-                      <button data-id="${gasto.id}" class="btn-edit">Editar</button>
-                      <button data-id="${gasto.id}" class="btn-delete">Deletar</button>
-                      <button data-id="${gasto.id}" class="btn-details">Detalhes</button>
-                    </td>
-                  `;
-                  gastosTbody.appendChild(row);
-                });
-              })
-              .catch(error => {
-                console.error('Erro ao carregar gastos/lucros do cliente:', error);
-                Swal.fire('Erro!', 'Ocorreu um erro ao carregar os gastos/lucros do cliente.', 'error');
-              });
+          fetch(`http://localhost:3000/api/gastoClientes/cliente/${clienteId}`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Gastos/lucros do cliente não encontrados');
+    }
+    return response.json();
+  })
+  .then(gastos => {
+    console.log('Gastos/lucros:', gastos);
+    const gastosTbody = document.getElementById('gastos-tbody');
+    gastosTbody.innerHTML = ''; // Limpar tabela
+    gastos.forEach(gasto => {
+      const row = document.createElement('tr');
+
+      // Determinar a classe para cor do valor (gasto ou lucro)
+      const valorClass = gasto.tipo === 'Gasto' ? 'gasto-valor' : 'lucro-valor';
+
+      row.innerHTML = `
+        <td>${gasto.id}</td>
+        <td>${gasto.descricao}</td>
+        <td class="${valorClass}">${parseFloat(gasto.valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+        <td>${new Date(gasto.data).toLocaleDateString()}</td>
+        <td>${gasto.tipo}</td>
+        <td>
+          <button data-id="${gasto.id}" class="btn-edit">Editar</button>
+          <button data-id="${gasto.id}" class="btn-delete">Deletar</button>
+          <button data-id="${gasto.id}" class="btn-details">Detalhes</button>
+        </td>
+      `;
+      gastosTbody.appendChild(row);
+    });
+  })
+  .catch(error => {
+    console.error('Erro ao carregar gastos/lucros do cliente:', error);
+    Swal.fire('Erro!', 'Ocorreu um erro ao carregar os gastos/lucros do cliente.', 'error');
+  });
+
+
           }
         });
     });

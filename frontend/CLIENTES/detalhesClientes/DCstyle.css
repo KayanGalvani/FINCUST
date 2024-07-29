@@ -134,11 +134,12 @@ body {
   flex-wrap: wrap;
 }
 
-.info-section, .observation-section {
+.info-section {
   display: flex;
   margin-bottom: 10px;
   width: 48%;
 }
+
 
 .info-title {
   font-weight: bold;
@@ -367,4 +368,25 @@ button[type="submit"]:hover {
 
 #btnCadastrar{
   background-color: green;
+}
+.gasto-valor {
+  color: red; /* Valor de gasto em vermelho */
+}
+
+.lucro-valor {
+  color: green; /* Valor de lucro em verde */
+}
+.expense-value-positive {
+  color: green; /* Valor de lucro em verde */
+}
+
+.expense-value-negative {
+  color: red; /* Valor de gasto em vermelho */
+}
+.gasto-valor {
+  color: red; /* Valor de gasto em vermelho */
+}
+
+.lucro-valor {
+  color: green; /* Valor de lucro em verde */
 }
